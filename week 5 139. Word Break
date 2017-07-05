@@ -1,0 +1,16 @@
+public class Solution {
+    public boolean wordBreak(String s, Set<String> dict) {
+        if (dict.contains(s)) return true;
+         
+        int len = s.length();
+         
+        for (int i = 1; i < len; i++) {
+            String s1 = s.substring(0, i);
+            if (dict.contains(s1)) {
+                String s2 = s.substring(i, len);
+                if (wordBreak(s2, dict) == true) return true;
+            }
+        }
+        return false;
+    }
+}
