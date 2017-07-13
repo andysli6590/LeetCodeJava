@@ -1,0 +1,31 @@
+public class Solution {
+    public boolean canIWin(int maxChoosableInteger, int desiredTotal) {
+        if (desiredTotal <= 0){
+            return true;
+        }
+        if (maxChoosableInteger * (maxChoosableInteger + 1) / 2 < desiredTotal){
+            return false;
+        }
+        return canIWin(desiredTotal, maxChoosableInteger, 0, new HashMap<>());
+    }
+    private boolean canIWin(int total, int n, int state, HashMap<Integer,Boolean>cache)
+        if(total <= 0){
+            return false;
+        }
+    if (cache.containsKey(state)){
+        return cache.get(state);
+    }
+    
+    for(int i = 0; i < n; i++){
+        if((state & (1 << i)) != 0){
+            continue;
+        }
+        if (!canIWin(total-(i+1), n, state | (1<<i), cache)){
+            cache.put(state, ture);
+            return true;
+        }
+    }
+    
+    cache.put(state, false);
+    return false;
+}
