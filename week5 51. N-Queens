@@ -1,0 +1,62 @@
+public class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<Deque<Integer>> result = this.nQueens(n);
+       
+        List<List<String>> resultAsStr = new ArrayList<List<String>>();
+        
+        for (Deque<Integer> variation: result){
+            
+            String[] board = new String[n];
+            Integer[] temp = variation.toArray(new Integer[0]);
+            
+            for (int row=0;row<variation.size();++row){
+                char[] currRow = new char[n];
+                Arrays.fill(currRow, '.');
+                Integer col = temp[row];
+                currRow[col] = 'Q';
+                board[row] = new String(currRow);                
+            }
+            resultAsStr.add(new ArrayList<String>(Arrays.asList(board)));
+        }
+
+
+        return resultAsStr;
+
+    }
+
+    private List<Deque<Integer>> nQueens(int n){
+        
+        List<Deque<Integer>> result = new ArrayList<Deque<Integer>>();
+        Deque<Integer> colPlacement = new ArrayDeque<Integer>();
+        this.nQueens(n, 0, colPlacement, result);
+        return result;
+    }
+
+    private void nQueens(int n, int row, Deque<Integer> colPlacement,       List<Deque<Integer>> result){
+        if (n==row){
+            result.add(new ArrayDeque<Integer>(colPlacement));
+        } else {
+
+            for (int col=0;col<n;++col){
+                colPlacement.add(col);
+                if (this.isValid(colPlacement)){
+                    this.nQueens(n, row+1, colPlacement, result);
+                }
+                colPlacement.pollLast();
+            }
+        }
+    }
+
+    private boolean isValid(Deque<Integer> colPlacement){
+        int row_id = colPlacement.size() -1;
+        Integer[] colArray = colPlacement.toArray(new Integer[0]);
+        for (int i=0;i<row_id;++i){
+            int diff = Math.abs(colArray[i] - colArray[row_id]);
+            if (diff == 0 || diff == row_id -i){
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
