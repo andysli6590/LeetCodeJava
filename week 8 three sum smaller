@@ -1,0 +1,27 @@
+//Given an array of n integers nums and a target, find the number of index triplets i,j,k with 0 <=i<j<k<n that satisfy the condition 
+//nums[i] + nums[j] + nums[k] < target.
+
+public int threeSumSmaller(int [] nums, int target){
+     int count = 0;
+     Arrays.sort(nums);
+     int len = nums.length;
+     
+     for (int i = 0; i < nums.length - 2; i++){
+        int start = i + 1;
+        int end = nums.length - 1;
+        while(start < end){
+           if(nums[i] + nums[start + nums[end] < target){
+             count += end - start++;
+             }else{
+             end--;
+             }
+            }
+           }
+          return count;
+        }
+        
+//Summary: pointers
+//1. Physical Meaning of Pointers: scanner or fixer
+//2.In each iteration, how to deal with fixer? Not scanner
+//3.In iteration, temporarily, you just have one scanner. 
+// the function of scanner: lead to the next interation, so we need to decide which pointer should be fixed.
