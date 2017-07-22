@@ -23,5 +23,5 @@ public int threeSumSmaller(int [] nums, int target){
 //Summary: pointers
 //1. Physical Meaning of Pointers: scanner or fixer
 //2.In each iteration, how to deal with fixer? Not scanner
-//3.In iteration, temporarily, you just have one scanner. 
-// the function of scanner: lead to the next interation, so we need to decide which pointer should be fixed.
+//In iteration, temporarily, you just have one scanner. 
+//the function of scanner: lead to the next interation, so we need to decide which pointer should be fixed.
