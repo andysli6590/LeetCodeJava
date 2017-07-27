@@ -58,3 +58,7 @@ public int findPairs(int[] nums, int k){
       
       return count;
     }
+//Summary -- Linear Structure --> Pointers
+//1. Physical Meaning of Pointers:scanner or fixer
+//2. In each iteration, how to deal with fixer? Not scanner
+//3. Tricky: does fixer include itself?
