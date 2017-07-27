@@ -1,0 +1,32 @@
+// for(int house: houses){
+//        if(house - heater[i] <= heater[i+1] - house)
+//        // go ritgh(next house)
+//        else
+//        // go down (next heater)
+//   }
+
+//Time Complexity: O(m+n)
+
+public int findRadius(int[] houses, int[] heaters){
+     int res = 0;
+     if(house == null || heaters == null){
+     return res;
+     }
+     
+     Arrays.sort(houses);
+     Arrays.sort(heaters);
+     
+     int i = 0;
+     int j = 0;
+     
+     while(i < houses.length){ // for each house find a heater
+        while(j < heaters.length -1 && houeses[i] - heaters[j] > heaters[j + 1] - house[i]){
+        j++;
+      }
+      
+      res = Math.max(res, Math.abs(heaters[j] - houses[i]));
+         i++;
+     }
+     return res;
+   }
+     
