@@ -1,0 +1,35 @@
+//1.why: Go back, check closest first
+//2.how: 
+// scanner: case_1: stack.offerLast()
+//sanner: case_2.1: stack.peekLast()-->stack.pollLast()
+//scanner: case_3: stack.pollLast()
+//scanner: case_2.2: stack.peekLast()-->stack.pollLast() 两者相互循环
+
+public int evallnFix(char[] tokens){
+   Deque<Integer> valStack = new LinkedList<Integer>(); //stack to store numbers
+   Deque<Integer> opStack = new LinkedList<Character>(); // stack to store operators
+   
+   for(int i = 0; i < tokens.length; i++){
+     if(token[i] == '('){ Case 1:'('
+       opStack.offerLast(toekns[i]);
+       }else if (tokens[i] == ')'){//Case 2: ')'
+          while (opStack.peekLast()!='('){
+            valStack.offerLast(cal(opStack.pollLast(), valStack.pollLast(), valStack.pollLast())); 
+            }
+           opStack.pollLast();//poll '('
+           }else if (tokens[i] == '+' || tokens[i] == '-'|| tokens[i] == '*'|| tokens[i] == '/'){ // Case 3: Operators other than parentheses
+             while(!opStack.isEmpty() && !isHigherThan(t=okens[i], opStack.peekLast())){
+                valStack.offerLast(cal(opStack.pollLast(), valStack.pollLast(), valStack.pollLast()));
+                }
+                opStack.offerLast(tokens[i]);// offer current operator
+                } else{ // Case 4: number
+                   valStack.offerLast(Integer.parseInt(tokens[i]));
+                }
+              }
+            //Calculate all numbers rest in stack
+            while(!opStack.isEmpty()){
+              valStack.offerLast(cal(opStack.pollLast(), valStack.pollLast(), valStack.pollLast()));
+              }
+            return valStack.pollLast();
+          }
+
